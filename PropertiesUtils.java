@@ -1,14 +1,16 @@
+package com.hp.gmall.realtime.utils;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class PropertiesUtil {
-    private static PropertiesUtil propertiesUtil = null;
+public class PropertiesUtils {
+    private static PropertiesUtils propertiesUtil = null;
     private Properties properties = null;
 
-    private PropertiesUtil(String filePath) {
+    private PropertiesUtils(String filePath) {
         readPropertiesFile(filePath);
     }
 
@@ -32,9 +34,9 @@ public class PropertiesUtil {
         }
     }
 
-    public static synchronized PropertiesUtil load(String filePath) {
+    public static synchronized PropertiesUtils load(String filePath) {
         if (propertiesUtil == null) {
-            propertiesUtil = new PropertiesUtil(filePath);
+            propertiesUtil = new PropertiesUtils(filePath);
         }
         return propertiesUtil;
     }

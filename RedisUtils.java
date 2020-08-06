@@ -1,3 +1,5 @@
+package com.hp.gmall.realtime.utils;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -6,30 +8,30 @@ import redis.clients.jedis.Protocol;
 import java.io.Closeable;
 
 
-public class RedisUtil implements Closeable {
+public class RedisUtils implements Closeable {
 
     public final static String REDIS_CONFIG_PATH = "config/redis.setting";
     private JedisPool pool;
 
-    public RedisUtil(String confPath) {
+    public RedisUtils(String confPath) {
         this.init(confPath);
     }
 
-    public static RedisUtil create() {
-        return new RedisUtil(REDIS_CONFIG_PATH);
+    public static RedisUtils create() {
+        return new RedisUtils(REDIS_CONFIG_PATH);
     }
 
-    public static RedisUtil create(String confPath) {
-        return new RedisUtil(confPath);
+    public static RedisUtils create(String confPath) {
+        return new RedisUtils(confPath);
     }
 
     public Jedis getJedis() {
         return this.pool.getResource();
     }
 
-    public RedisUtil init(String confPath) {
+    public RedisUtils init(String confPath) {
         final JedisPoolConfig config = new JedisPoolConfig();
-        PropertiesUtil prop = PropertiesUtil.load(confPath);
+        PropertiesUtils prop = PropertiesUtils.load(confPath);
         this.pool = new JedisPool(config,
                 prop.getString("host", Protocol.DEFAULT_HOST),
                 prop.getInt("port", Protocol.DEFAULT_PORT),
