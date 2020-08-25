@@ -18,7 +18,7 @@ public class PropertiesUtils {
         properties = new Properties();
         InputStream in = null;
         try {
-            in = new FileInputStream(filePath);
+            in = this.getClass().getClassLoader().getResourceAsStream(filePath);
             properties.load(in);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

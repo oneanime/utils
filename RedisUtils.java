@@ -37,7 +37,7 @@ public class RedisUtils implements Closeable {
         InputStream inputStream = null;
         try {
             prop = new Properties();
-            inputStream = new FileInputStream(confPath);
+            inputStream = this.getClass().getClassLoader().getResourceAsStream(confPath);
             prop.load(inputStream);
             String host = prop.getProperty("host", Protocol.DEFAULT_HOST);
             int port = Integer.parseInt(prop.getProperty("port", String.valueOf(Protocol.DEFAULT_PORT)));
